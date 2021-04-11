@@ -2,18 +2,12 @@
 
 ## Step by step description
 
-1. create the key.
-  * winpty openssl genrsa -out ballerina.key
-2. create certificate request file.
-  * winpty openssl req -new -key ballerina.key -out ballerina.csr
-3. create the certificate file.
-  * winpty openssl x509 -req -days 365 -in ballerina.csr -signkey ballerina.key -out ballerina.crt
-4. create ballerina.p12 with the ballerina.key.
-  * winpty openssl pkcs12 -export -out ballerina.p12 -inkey ballerina.key -in ballerina.crt
-5. create empty ballerina-truststore.p12 with no keys.
-  * winpty openssl pkcs12 -export -nokeys -in ballerina.crt -out ballerina-truststore.p12
-6. import the certificate into the trusted keystore.
-  * keytool -import -file ballerina.crt -keystore ballerina-truststore.p12
+1. create the key.<br>```winpty openssl genrsa -out ballerina.key```
+1. create certificate request file.<br>```winpty openssl req -new -key ballerina.key -out ballerina.csr```
+1. create the certificate file.<br>```winpty openssl x509 -req -days 365 -in ballerina.csr -signkey ballerina.key -out ballerina.crt```
+1. create ballerina.p12 with the ballerina.key.<br>```winpty openssl pkcs12 -export -out ballerina.p12 -inkey ballerina.key -in ballerina.crt```
+1. create empty ballerina-truststore.p12 with no keys.<br>```winpty openssl pkcs12 -export -nokeys -in ballerina.crt -out ballerina-truststore.p12```
+1. import the certificate into the trusted keystore.<br>```keytool -import -file ballerina.crt -keystore ballerina-truststore.p12```
 
 ## If the certificate expires.
 * If the certificate expiries repeat steps 2 to 6. Creating new key for this examples is not necessary.
@@ -46,7 +40,7 @@
 * On this project:
   * openssl x509 -req -in ballerina.csr -signkey ballerina.key -out ballerina.crt
 
-## List the key store cotnent
+## List the key store content
 keytool -list -keystore ballerina-truststore.p12
 
 ## Glossary
