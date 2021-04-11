@@ -12,36 +12,29 @@
 ## If the certificate expires.
 * If the certificate expiries repeat steps 2 to 6. Creating new key for this examples is not necessary.
 
-## Note
-* strange case if creating the truststore with the key.
-* if using this way then the file listed looks like the ballerina.p12 file. Id doens't list struster sert but private key.
-* create ballerina-truststore.p12 with the ballerina.key
-* winpty openssl pkcs12 -export -inkey ballerina.key -in ballerina.crt -out ballerina-truststore.p12
+## Note - possible invalid cotnent if creating the truststore with the key.
+* if using this way then the file listed looks like the ballerina.p12 file. It doesn't list trusted cert but private key.
+* create ballerina-truststore.p12 with the ballerina.key:<br>```winpty openssl pkcs12 -export -inkey ballerina.key -in ballerina.crt -out ballerina-truststore.p12```
 
 ## List the content
-* winpty openssl pkcs12 -in ballerina.p12 -info
-* keytool -import -file ballerina.crt -keystore ballerina-truststore.p12
+```winpty openssl pkcs12 -in ballerina.p12 -info```<br>
+```keytool -import -file ballerina.crt -keystore ballerina-truststore.p12```
 
 ## Some listing commands
-* keytool -list -storetype PKCS12 -keystore ballerina.12 -storepass ballerina
-* keytool -importcert -storetype PKCS12 -keystore ballerina-truststore.p12 -storepass ballerina -alias ca -file ballerina.key -noprompt
-* keytool -list -storetype PKCS12 -keystore ballerina-truststore.p12 -storepass ballerina
+```keytool -list -storetype PKCS12 -keystore ballerina.12 -storepass ballerina```<br>
+```keytool -importcert -storetype PKCS12 -keystore ballerina-truststore.p12 -storepass ballerina -alias ca -file ballerina.key -noprompt```<br>
+```keytool -list -storetype PKCS12 -keystore ballerina-truststore.p12 -storepass ballerina```
 
 ## Some listing commands
-* Example
-  * winpty openssl pkcs12 -info -in keystore.p12
-* On this project:
-  * winpty openssl pkcs12 -info -in ballerina-truststore.p12
+* Example:<br>```winpty openssl pkcs12 -info -in keystore.p12```
+* On this project:<br>```winpty openssl pkcs12 -info -in ballerina-truststore.p12```
 
 ## Print the expire date of the certificate
-* Examples:
-  * openssl x509 -req -in ballerina.csr -signkey ballerina.key -out ballerina.crt
-  * openssl x509 -enddate -noout -in server.crt
-* On this project:
-  * openssl x509 -req -in ballerina.csr -signkey ballerina.key -out ballerina.crt
+* Examples:<br>```openssl x509 -req -in ballerina.csr -signkey ballerina.key -out ballerina.crt```<br>```openssl x509 -enddate -noout -in server.crt```
+* On this project:<br>```openssl x509 -req -in ballerina.csr -signkey ballerina.key -out ballerina.crt```
 
 ## List the key store content
-keytool -list -keystore ballerina-truststore.p12
+```keytool -list -keystore ballerina-truststore.p12```
 
 ## Glossary
 * keytool manages a keystore (database) of cryptographic keys, X.509 certificate chains, and trusted certificates. It is a tool as part of the java installation.
