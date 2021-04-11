@@ -1,0 +1,15 @@
+[project]
+org-name= "name.stojanovski.kosta"
+version= "0.1.0"
+
+[dependencies]
+
+[b7a.users]
+
+[b7a.users.alice]
+password="password1"
+scopes="scope1"
+
+[b7a.users.bob]
+password="password2"
+scopes="scope2,scope3"
