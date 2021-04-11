@@ -3,22 +3,17 @@
 ## Step by step description
 
 1. create the key.
-winpty openssl genrsa -out ballerina.key
-
+  * winpty openssl genrsa -out ballerina.key
 2. create certificate request file.
-winpty openssl req -new -key ballerina.key -out ballerina.csr
-
+  * winpty openssl req -new -key ballerina.key -out ballerina.csr
 3. create the certificate file.
-winpty openssl x509 -req -days 365 -in ballerina.csr -signkey ballerina.key -out ballerina.crt
-
+  * winpty openssl x509 -req -days 365 -in ballerina.csr -signkey ballerina.key -out ballerina.crt
 4. create ballerina.p12 with the ballerina.key.
-winpty openssl pkcs12 -export -out ballerina.p12 -inkey ballerina.key -in ballerina.crt
-
+  * winpty openssl pkcs12 -export -out ballerina.p12 -inkey ballerina.key -in ballerina.crt
 5. create empty ballerina-truststore.p12 with no keys.
-winpty openssl pkcs12 -export -nokeys -in ballerina.crt -out ballerina-truststore.p12
-
+  * winpty openssl pkcs12 -export -nokeys -in ballerina.crt -out ballerina-truststore.p12
 6. import the certificate into the trusted keystore.
-keytool -import -file ballerina.crt -keystore ballerina-truststore.p12
+  * keytool -import -file ballerina.crt -keystore ballerina-truststore.p12
 
 ## If the certificate expires.
 * If the certificate expiries repeat steps 2 to 6. Creating new key for this examples is not necessary.
